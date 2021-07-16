@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'spotify-angular';
+
+  regionVisible: string = "";
+
+  verArtista(idArtista:any){
+    this.regionVisible = 'artistas';
+    console.log(idArtista);
+  }
+
+  verPlaylist(idPlaylist:any){
+    this.regionVisible = 'playlist';
+    console.log(idPlaylist);
+  }
 }
