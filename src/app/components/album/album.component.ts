@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {faPlay, faPlus} from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-album',
@@ -10,9 +11,22 @@ export class AlbumComponent implements OnInit {
 
   faPlay = faPlay;
   faPlus = faPlus;
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
+  }
+  guardarCancionPlaylist(){
+
+  }
+
+  agregarAPlaylist(modal :any){
+    this.modalService.open(
+      modal,
+      {
+        size:'xs',
+        centered:false
+      }
+    );
   }
 
 }

@@ -3,8 +3,49 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-playlist">Nueva playlist</a>
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-usuarios">Cambiar usuario</a>
+            <a class="nav-link" href="#" (click)="abrirNuevaPlaylist(modalNuevaPlaylist)">Nueva playlist</a>
+            <a class="nav-link" href="#" (click)="abrirCambiarUsuario(modalCambiarUsuario)" >Cambiar usuario</a>
         </li>
     </ul>
 </nav>
+<!-- Venta modal Cambiar usuario -->
+<ng-template #modalCambiarUsuario let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"> Cambiar Usuario</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        Seleccione una Usuario
+        <select class="form-control">
+            <option value="1">Usuario 1</option>
+            <option value="2">Usuario 2</option>
+            <option value="3">Usuario 3</option>
+            <option value="4">Usuario 4</option>
+            <option value="5">Usuario 5</option>
+            <option value="6">Usuario 6</option>
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="seleccionarUsuario()">Seleccionar Usuario</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Boton Cerrrar')">Close</button>
+    </div>
+</ng-template>
+
+<!-- Ventana modal nueva Playlist -->
+<ng-template #modalNuevaPlaylist let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"> Nueva Playlist</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <input class="form-control" type="text" placeholder="Nombre del Playlist">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="guardarPlaylist()">Save</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Boton Cerrrar')">Close</button>
+    </div>
+</ng-template>
