@@ -12,4 +12,9 @@ export class UsuariosService {
   obtenerUsuarios (): Observable<any>{
     return this.httpClient.get('http://localhost:8888/usuarios',{});
   }
+
+  obtenerPlaylistsUsuario (usuario:any): Observable<any>{
+    return this.httpClient.get(`http://localhost:8888/usuarios/${usuario}/playlists`,{});
+  }
+  
 }

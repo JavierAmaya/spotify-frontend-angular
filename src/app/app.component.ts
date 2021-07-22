@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @Component({
@@ -9,15 +11,27 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'spotify-angular';
 
+
+  @ViewChild('sidebar') sidebarComponent!:SidebarComponent;
+  @ViewChild('playlistComponent') playlistComponent!:PlaylistComponent;
+
   regionVisible: string = "";
+
+  constructor (){}
 
   verArtista(idArtista:any){
     this.regionVisible = 'artistas';
     console.log(idArtista);
   }
 
-  verPlaylist(idPlaylist:any){
+  verPlaylist(playlist:any){
+    this.playlistComponent.verPlaylist(playlist);
     this.regionVisible = 'playlist';
-    console.log(idPlaylist);
+    console.log(playlist);
+  }
+
+  seleccionarUsuario(usuario:any){
+    console.log('usuarioSeleccionado (AppComponent)',usuario);
+    this.sidebarComponent.obtenerPlaylists(usuario);
   }
 }

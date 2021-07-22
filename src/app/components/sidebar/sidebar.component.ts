@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faMusic, faPlay} from '@fortawesome/free-solid-svg-icons';
 import { ArtistasService } from 'src/app/services/artistas.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,8 +14,9 @@ export class SidebarComponent implements OnInit {
   @Output() onVerPlaylist = new EventEmitter();
 
   artistas:any = [];
+  playlists:any = [];
 
-  constructor( private artistasService:ArtistasService) { }
+  constructor( private artistasService:ArtistasService , private usuariosService:UsuariosService) { }
 
   ngOnInit(): void {
     this.artistasService.obtenerArtistas().subscribe(
@@ -38,10 +40,22 @@ export class SidebarComponent implements OnInit {
     this.onVerArtista.emit(artista._id);
   }
 
-  verPlaylist(idPlaylist:any){
+  verPlaylist(playlist:any){
     //this.regionVisible = 'playlist';
-    this.onVerPlaylist.emit(idPlaylist);
-    console.log(idPlaylist);
+    this.onVerPlaylist.emit(playlist);
+    console.log(playlist._id);
+  }
+
+  obtenerPlaylists(usuario:any){
+    console.log('obtener las playlist del usuario:', usuario);
+    this.usuariosService.obtenerPlaylistsUsuario(usuario)
+    .subscribe(
+      res => {
+        console.log('Playlists:', res);
+        this.playlists = res.playlists;
+      },
+      error => { console.log(error)}
+    );
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
@@ -8,6 +8,8 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  //Evento que se desencadena al seleccionar un usuario
+  @Output() onSeleccionarUSuario = new EventEmitter();
 
   constructor( private modalService:NgbModal, private usuariosService: UsuariosService ) { }
   usuarioSeleccionado:any = "";
@@ -49,8 +51,7 @@ export class HeaderComponent implements OnInit {
 
   seleccionarUsuario(){
     console.log(this.usuarioSeleccionado);
+    this.onSeleccionarUSuario.emit(this.usuarioSeleccionado);
+    this.modalService.dismissAll();
   }
-
-
-
 }
