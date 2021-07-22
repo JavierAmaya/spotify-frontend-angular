@@ -17,8 +17,15 @@ export class SidebarComponent implements OnInit {
   constructor( private artistasService:ArtistasService) { }
 
   ngOnInit(): void {
-    this.artistas = this.artistasService.obtenerArtistas();
-    console.log('Artistas', this.artistas);
+    this.artistasService.obtenerArtistas().subscribe(
+      res => {
+        this.artistas = res;
+        console.log('Artistas', this.artistas);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   faMusic = faMusic;
@@ -26,10 +33,9 @@ export class SidebarComponent implements OnInit {
 
   regionVisible: string = "";
 
-  verArtista(idArtista:any){
+  verArtista(artista:any){
     //this.regionVisible = 'artistas';
-    this.onVerArtista.emit(idArtista);
-    console.log(idArtista);
+    this.onVerArtista.emit(artista._id);
   }
 
   verPlaylist(idPlaylist:any){

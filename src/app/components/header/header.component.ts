@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private modalService:NgbModal) { }
-
+  constructor( private modalService:NgbModal, private usuariosService: UsuariosService ) { }
+  usuarioSeleccionado:any = "";
+  usuarios:any = [];
   ngOnInit(): void {
+    this.usuariosService.obtenerUsuarios().subscribe(
+      res =>{
+        this.usuarios = res;
+        console.log('usuarios',res);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   guardarPlaylist(){
@@ -36,7 +47,9 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  seleccionarUsuario(){}
+  seleccionarUsuario(){
+    console.log(this.usuarioSeleccionado);
+  }
 
 
 
