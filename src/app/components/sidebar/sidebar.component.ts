@@ -12,10 +12,13 @@ export class SidebarComponent implements OnInit {
   @Output() onVerArtista = new EventEmitter();
   @Output() onVerPlaylist = new EventEmitter();
 
+  artistas:any = [];
+
   constructor( private artistasService:ArtistasService) { }
 
   ngOnInit(): void {
-    this.artistasService.obtenerArtistas();
+    this.artistas = this.artistasService.obtenerArtistas();
+    console.log('Artistas', this.artistas);
   }
 
   faMusic = faMusic;
