@@ -1,220 +1,27 @@
-<section class="container-fluid">
+<section class="container-fluid pb-5" *ngFor="let album of albumes">
     <div class="row">
         <div class="col-4 text-center">
-            <div class="cover-image" style="background-image:url(../../../assets/images/cover1.jpg);">
-            </div><br>
-            <h5 class="text-muted">Album 1</h5>
+            <div class="cover-image" [style.backgroundImage]="obtenerURL(album.caratulaAlbum)">
+            </div>
+            <h5 class="text-muted">{{album.nombreAlbum}}</h5>
             <button class="btn btn-success"type="button">Play</button>
         </div>
-        <div class="col-8">
-        
-        <!--Item 1 -->
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-<hr>
-<section class="container-fluid">
-    <div class="row">
-        <div class="col-4 text-center">
-            <div class="cover-image" style="background-image:url(../assets/images/cover2.jpg);">
-            </div>
-            <h5 class="text-muted">Album 2</h5>
-            <button class="btn btn-success"type="button">Play</button>
-            </div>
         <div class="col-8">
             <!--Item 1 -->
-            <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
+            <div class="row song-item" *ngFor="let cancion of album.canciones">
+                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
+                <div class="col-10">
+                    <div class="song-title">{{cancion.nombreCancion}}</div>
+                    <div class="song-description">{{artistaActual}} - {{album.nombreAlbum}}</div>
+                </div>
+                <div class="col-1">
+                    <span>{{cancion.duracion}}</span>
+                    <button (click)="agregarAPlaylist(modalAgregarAPlaylist,cancion)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
+                </div>
             </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
-
-        <div class="row song-item">
-            <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-            <div class="col-10">
-                <div class="song-title">Cancion</div>
-                <div class="song-description">Artista - Album</div>
-            </div>
-            <div class="col-1">
-                <span>3:56</span>
-                <button (click)="agregarAPlaylist(modalAgregarAPlaylist)" class="btn btn-outline-success btn-sm" title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon> </button>
-            </div>
-        </div>
         </div>
     </div>
+    <hr>
 </section>
 
 <!--Modal Playlists-->
@@ -227,17 +34,13 @@
     </div>
     <div class="modal-body">
         Seleccione una playlist
-        <select class="form-control">
-            <option value="1">Playlist 1</option>
-            <option value="2">Playlist 2</option>
-            <option value="3">Playlist 3</option>
-            <option value="4">Playlist 4</option>
-            <option value="5">Playlist 5</option>
-            <option value="6">Playlist 6</option>
+        <select class="form-control" [(ngModel)]="playlistSeleccionada">
+            <option>Seleccione una playlist</option>
+            <option *ngFor="let playlist of playlists" [ngValue]="playlist._id">{{playlist.tituloPlaylist}}</option>
         </select>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Boton Cerrrar')">Close</button>
         <button type="button" class="btn btn-outline-success" (click)="guardarCancionPlaylist()">Guardar en playlist</button>
     </div>
 </ng-template>

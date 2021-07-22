@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
 
   verArtista(artista:any){
     //this.regionVisible = 'artistas';
-    this.onVerArtista.emit(artista._id);
+    this.onVerArtista.emit({idArtista:artista._id, nombreArtista: artista.nombreArtista});
   }
 
   verPlaylist(playlist:any){

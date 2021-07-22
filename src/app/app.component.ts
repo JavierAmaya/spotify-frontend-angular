@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { AlbumComponent } from './components/album/album.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
@@ -14,14 +15,16 @@ export class AppComponent {
 
   @ViewChild('sidebar') sidebarComponent!:SidebarComponent;
   @ViewChild('playlistComponent') playlistComponent!:PlaylistComponent;
+  @ViewChild('album') albumComponent!:AlbumComponent;
+
 
   regionVisible: string = "";
 
   constructor (){}
 
-  verArtista(idArtista:any){
+  verArtista(artista:any){
     this.regionVisible = 'artistas';
-    console.log(idArtista);
+    this.albumComponent.obtenerAlbum(artista);
   }
 
   verPlaylist(playlist:any){
@@ -33,5 +36,6 @@ export class AppComponent {
   seleccionarUsuario(usuario:any){
     console.log('usuarioSeleccionado (AppComponent)',usuario);
     this.sidebarComponent.obtenerPlaylists(usuario);
+    this.albumComponent.idUsuarioSeleccionado = usuario;
   }
 }
