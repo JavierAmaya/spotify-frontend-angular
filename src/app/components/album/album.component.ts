@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import {faPlay, faPlus} from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./album.component.css']
 })
 export class AlbumComponent implements OnInit {
+  @Output() onAgregarCancion = new EventEmitter();
 
   faPlay = faPlay;
   faPlus = faPlus;
@@ -19,6 +20,8 @@ export class AlbumComponent implements OnInit {
   idUsuarioSeleccionado:string ='';
   playlists:any = [];
   playlistSeleccionada:any;
+  albumSeleccionado:string='';
+  cancionSeleccionada:any;
 
   constructor(
     private modalService: NgbModal, 
@@ -32,15 +35,38 @@ export class AlbumComponent implements OnInit {
   ngOnInit(): void {
   }
   guardarCancionPlaylist(){
-
+    const data = {
+      idUsuario: this.idUsuarioSeleccionado,
+      idPlaylist: this.playlistSeleccionada,
+      nombreArtista: this.artistaActual,
+      cancion: this.cancionSeleccionada,
+      nombreAlbum: this.albumSeleccionado
+    }
+    this.usuariosService.guardarCancionPlaylist(data).subscribe(
+      res =>{
+        console.log(res);
+        if (res.ok == 1) {
+          this.modalService.dismissAll();  
+          this.onAgregarCancion.emit(this.idUsuarioSeleccionado);
+        }
+        
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    console.log(data);
   }
 
-  agregarAPlaylist(modal :any , cancion:any){
+  agregarAPlaylist(modal :any , cancion:any, nombreAlbum:any){
     this.usuariosService.obtenerPlaylistsUsuario(this.idUsuarioSeleccionado)
     .subscribe(
       res => {
         this.playlists = res.playlists;
         console.log('lista de playlists', this.playlists);
+        console.log('agregar cancion: ', cancion);
+        this.cancionSeleccionada = cancion;
+        this.albumSeleccionado = nombreAlbum;
         this.modalService.open(
           modal,
           {

@@ -12,7 +12,7 @@
         <!------------------------------->
         <div id="vista-artista" [ngClass]="{'visible':regionVisible == 'artistas', 'noVisible':regionVisible!= 'artistas'}">
           <!-- *ngIf = "regionVisible == 'artistas' -->
-          <app-album #album></app-album>  
+          <app-album #album (onAgregarCancion)="recargarPlaylists($event)"></app-album>  
         </div><!--vista-artista--> 
       </main>
     </div>

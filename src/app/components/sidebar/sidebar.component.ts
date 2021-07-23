@@ -48,6 +48,7 @@ export class SidebarComponent implements OnInit {
 
   obtenerPlaylists(usuario:any){
     console.log('obtener las playlist del usuario:', usuario);
+    this.playlists=[];
     this.usuariosService.obtenerPlaylistsUsuario(usuario)
     .subscribe(
       res => {

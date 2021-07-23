@@ -17,4 +17,15 @@ export class UsuariosService {
     return this.httpClient.get(`http://localhost:8888/usuarios/${usuario}/playlists`,{});
   }
   
+  guardarCancionPlaylist(data:any): Observable<any>{
+    console.log('data en servicio usuario', data);
+    return this.httpClient.post(
+      `http://localhost:8888/usuarios/${data.idUsuario}/playlists/${data.idPlaylist}/canciones`,
+      {
+        nombreCancion:data.cancion.nombreCancion,
+        artista:data.nombreArtista,
+        album:data.nombreAlbum
+      }
+    );
+  }
 }

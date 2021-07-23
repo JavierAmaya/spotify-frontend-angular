@@ -38,4 +38,8 @@ export class AppComponent {
     this.sidebarComponent.obtenerPlaylists(usuario);
     this.albumComponent.idUsuarioSeleccionado = usuario;
   }
+
+  recargarPlaylists(idUsuario:any){
+    this.sidebarComponent.obtenerPlaylists(idUsuario);
+  }
 }
