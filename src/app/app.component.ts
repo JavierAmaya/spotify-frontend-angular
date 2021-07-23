@@ -40,6 +40,8 @@ export class AppComponent {
   }
 
   recargarPlaylists(idUsuario:any){
+    console.log('ejecuto recargar playlits', idUsuario)
     this.sidebarComponent.obtenerPlaylists(idUsuario);
   }
+
 }

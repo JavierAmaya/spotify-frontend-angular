@@ -10,13 +10,17 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 export class HeaderComponent implements OnInit {
   //Evento que se desencadena al seleccionar un usuario
   @Output() onSeleccionarUSuario = new EventEmitter();
+  //evento al guardar una playlist
+  @Output() onGuardarPlaylist = new EventEmitter();
+
+  nombrePlaylist:string="";
 
   constructor( private modalService:NgbModal, private usuariosService: UsuariosService ) { }
   usuarioSeleccionado:any = "";
   usuarios:any = [];
   ngOnInit(): void {
     this.usuariosService.obtenerUsuarios().subscribe(
-      res =>{
+      res => {
         this.usuarios = res;
         console.log('usuarios',res);
       },
@@ -27,8 +31,23 @@ export class HeaderComponent implements OnInit {
   }
 
   guardarPlaylist(){
-    console.log('ejecuto guardar playlist');
+    console.log('ejecuto guardar playlist',this.nombrePlaylist);
+    this.usuariosService.guardarPlaylist(this.nombrePlaylist,this.usuarioSeleccionado)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.modalService.dismissAll();
+        if (res.ok === 1) {
+          console.log('entro a if');
+          this.onGuardarPlaylist.emit(this.usuarioSeleccionado); 
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
+
   abrirNuevaPlaylist(modal:any){
     this.modalService.open(
       modal,

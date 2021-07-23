@@ -28,4 +28,14 @@ export class UsuariosService {
       }
     );
   }
+
+  guardarPlaylist(nombrePlaylist:any, idUsuario:any) :Observable<any>{
+    console.log('guardar playlist', {nombrePlaylistGuardar: nombrePlaylist,idUsuarioGuardar: idUsuario});
+    return this.httpClient.post(
+      `http://localhost:8888/usuarios/${idUsuario}/playlists`,
+      {
+        tituloPlaylist: nombrePlaylist
+      }
+    );
+  }
 }
